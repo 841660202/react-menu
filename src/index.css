@@ -1,0 +1,17 @@
+li {
+    list-style-type:none;
+}
+.list-menu{
+ display: flex;
+ justify-content: space-around;
+}
+.menu{
+    flex: 1;
+}
+.catalog{
+    margin-bottom: 8px;
+    padding: 2px 4px;
+    box-shadow: 0 0 30px rgb(8, 182, 235) inset;
+    width: 8em;
+    text-align: center;
+}
