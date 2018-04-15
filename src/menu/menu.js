@@ -22,22 +22,23 @@ export const menuData = [
             // hideInMenu: true,
         }],
     },
+    {
+        name: '表单页',
+        icon: 'form',
+        path: 'form',
+        children: [{
+            name: '基础表单',
+            path: 'basic-form',
+        }, {
+            name: '分步表单',
+            path: 'step-form',
+        }, {
+            name: '高级表单',
+            authority: 'admin',
+            path: 'advanced-form',
+        }],
+    }, 
     // {
-    //     name: '表单页',
-    //     icon: 'form',
-    //     path: 'form',
-    //     children: [{
-    //         name: '基础表单',
-    //         path: 'basic-form',
-    //     }, {
-    //         name: '分步表单',
-    //         path: 'step-form',
-    //     }, {
-    //         name: '高级表单',
-    //         authority: 'admin',
-    //         path: 'advanced-form',
-    //     }],
-    // }, {
     //     name: '列表页',
     //     icon: 'table',
     //     path: 'list',

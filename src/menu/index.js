@@ -64,12 +64,15 @@ const getRedirect = (item) => {
 getMenuData().forEach(getRedirect);
 
 class SiderDemo extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         openKeys: this.getDefaultCollapsedSubMenus(props),
-    //     };
-    // }
+    constructor(props) {
+        super(props);
+        this.menus = getMenuData();
+        this.state = {
+            openKeys: [],
+            defaultOpenKeys: 'dashboard',
+            current: 'dashboard',
+        };
+    }
     componentWillReceiveProps(nextProps) {
         // if (nextProps.location.pathname !== this.props.location.pathname) {
         //     this.setState({
@@ -78,6 +81,27 @@ class SiderDemo extends React.Component {
         // }
         console.log(this.props.history)
     }
+    componentDidMount(){
+        const lastKey = localStorage.lastKey;
+        console.log(lastKey);
+        
+    }
+    handleStoreKey = ({ item, key, keyPath }) => {
+        console.log(item);
+        console.log(key);
+        console.log(keyPath);
+        
+        // localStorage.setItem('lastKey',key)
+    }
+
+    handleClick = (e) => {
+        console.log('click ', e);
+        const keys = e.key.split('/');
+        this.setState({
+          current: e.key,
+          defaultOpenKeys: keys[0],
+        });
+      }
     /**
      * 获得菜单子节点
      * @memberof SiderMenu
@@ -216,7 +240,7 @@ class SiderDemo extends React.Component {
         });
     }
     render() {
-        // const { openKeys } = this.state;
+        const { openKeys } = this.state;
         // // Don't show popup menu when it is been collapsed
         // const menuProps = {
         //     openKeys,
@@ -236,6 +260,12 @@ class SiderDemo extends React.Component {
                             theme="dark"
                             mode="inline"
                             style={{padding: '16px 0', width: '100%'}}
+                            defaultOpenKeys={[this.state.defaultOpenKeys]}
+                            openKeys={[openKeys[openKeys.length - 1]]}
+                            selectedKeys={[this.state.current]}
+                            //onSelect={this.handleStoreKey}
+                            onClick={this.handleClick}
+                            onOpenChange={this.handleOpenChange}
                         >
                             {this.getNavMenuItems(getMenuData())}
                         </Menu>
