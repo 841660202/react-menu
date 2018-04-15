@@ -68,9 +68,12 @@ class SiderDemo extends React.Component {
         super(props);
         this.menus = getMenuData();
         this.state = {
-            openKeys: [],
-            defaultOpenKeys: 'dashboard',
-            current: 'dashboard',
+            openKeys: localStorage.f ? [localStorage.f] : ['dashboard'],
+            defaultOpenKeys: localStorage.f ? localStorage.f : 'dashboard',
+            current: localStorage.z ? localStorage.z : 'dashboard/analysis',
+            // openKeys: ['dashboard'],
+            // defaultOpenKeys: 'dashboard',
+            // current: 'dashboard/analysis',
         };
     }
     componentWillReceiveProps(nextProps) {
@@ -101,6 +104,8 @@ class SiderDemo extends React.Component {
           current: e.key,
           defaultOpenKeys: keys[0],
         });
+        localStorage.setItem('f',keys[0]);
+        localStorage.setItem('z',e.key);
       }
     /**
      * 获得菜单子节点
@@ -251,6 +256,10 @@ class SiderDemo extends React.Component {
         //     selectedKeys = [openKeys[openKeys.length - 1]];
         // }
         const routerObj = getFlatMenuData(getMenuData());
+        console.log([this.state.defaultOpenKeys]);
+        console.log([this.state.current]);
+        console.log([openKeys[openKeys.length - 1]]);
+        
         return (
             <Router>
                 <Layout style={{minHeight: '100vh'}}>
